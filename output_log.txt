@@ -1,4 +1,4 @@
 query: from:suicaivrc #今日のことばVRC
-allowlist: [754907745065709569, 1213643085852246016]
+allowlist: [1118339375299850241]
 
-image_uri: https://pbs.twimg.com/media/Eh44_CuU8AAEYEk.jpg?format=jpg&name=orig
+image_uri: https://ureishi.github.io/hitokoto/hitokoto.jpg
