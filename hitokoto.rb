@@ -18,7 +18,7 @@ def twitter_client
 end
 
 def get_orig_image_uri s
-	"#{s}?format=jpg&name=orig"
+	"#{s}?name=orig"
 end
 
 query = File.open('query.txt'){_1.gets}.chomp
