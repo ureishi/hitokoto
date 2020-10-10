@@ -1,4 +1,4 @@
 query: from:suicaivrc #今日のことばVRC
 allowlist: [754907745065709569, 1213643085852246016]
 
-image_uri: https://pbs.twimg.com/media/Ejj8uUSVoAAhNts.jpg?name=orig
+image_uri: https://pbs.twimg.com/media/EjwiXxZUwAAPU3X.jpg?name=orig
