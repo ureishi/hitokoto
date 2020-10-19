@@ -28,7 +28,7 @@ end
 list_url = 'https://raw.githubusercontent.com/suicai/hitokoto-list/main/list.txt'
 puts "get tweet urls from #{list_url}"
 
-tweet_urls = URI.open(list_url).read.split("\n").sample(5)
+tweet_urls = URI.open(list_url).read.split("\n").sample(5).map{_1.split('#').first.strip}
 puts "tweet_urls:\n\t#{tweet_urls.join "\n\t"}"
 
 #tweet_urls[0] = "https://twitter.com/chokakuji/status/1317956366795894784"
