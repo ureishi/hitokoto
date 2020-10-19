@@ -7,7 +7,7 @@ require 'uri'
 puts `ruby --version`
 
 ### get image from twitter
-puts 'get image...'
+puts 'get images...'
 
 ENVIRONMENT = {
 	TWITTER_CONSUMER_KEY: ARGV[0],
