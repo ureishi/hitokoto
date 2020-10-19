@@ -31,7 +31,7 @@ puts "get tweet urls from #{list_url}"
 tweet_urls = URI.open(list_url).read.split("\n").sample(5).map{_1.split('#').first.strip}
 puts "tweet_urls:\n\t#{tweet_urls.join "\n\t"}"
 
-#tweet_urls[0] = "https://twitter.com/chokakuji/status/1317956366795894784"
+#tweet_urls[0] = 'https://twitter.com/SUICAIVRC/status/1272845751769391105'
 
 tweets = tweet_urls.map{tw = twitter_client.status _1, tweet_mode: 'extended'; sleep 10; tw}
 
