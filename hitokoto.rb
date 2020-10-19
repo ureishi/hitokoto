@@ -70,7 +70,6 @@ puts 'create images...'
 BASE_W = 1024
 BASE_H = 1448
 SIZE = 1000
-NEW_ICON_X = [-146, -48, 0, 50, 148]
 FONT_SERIF = '.font/Noto_Serif_JP/NotoSerifJP-Regular.otf'
 FONT_SANS = '.font/Noto_Sans_JP/NotoSansJP-Regular.otf'
 
