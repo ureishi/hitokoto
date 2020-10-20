@@ -132,15 +132,6 @@ tweets.length.times{|p|
 		_1.draw "text #{pos} '#{text}'"
 	}
 	.combine_options{
-		pos = '5, 117'
-		text = "更新管理者Discord: すいかい#9599"
-		_1.font FONT_SANS
-		_1.fill '#fcfcfc'
-		_1.gravity 'SouthEast'
-		_1.pointsize 20
-		_1.draw "text #{pos} '#{text}'"
-	}
-	.combine_options{
 		pos = '600, 117'
 		text = "「VRChat 今日のことば」\nBOOTHにて配布中\n更新管理者Discord: すいかい#9599"
 		_1.font FONT_SANS
