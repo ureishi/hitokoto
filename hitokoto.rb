@@ -106,7 +106,7 @@ tweets.length.times{|p|
 	.open('base.png')
 	.combine_options{
 		pos = '0, 152'
-		text = "#{tweets[p].user.name}"[..30]
+		text = tweets[p] ? "#{tweets[p].user.name}"[..30] : "?????"
 		_1.font FONT_SERIF
 		_1.fill '#fcfcfc'
 		_1.gravity 'North'
@@ -115,7 +115,7 @@ tweets.length.times{|p|
 	}
 	.combine_options{
 		pos = '0, 186'
-		text = "@#{tweets[p].user.screen_name}"
+		text = "@#{tweets[p] ? tweets[p].user.screen_name : "?????"}"
 		_1.font FONT_SANS
 		_1.fill '#fcfcfc'
 		_1.gravity 'North'
