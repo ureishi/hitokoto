@@ -33,7 +33,7 @@ puts "tweet_urls:\n\t#{tweet_urls.join "\n\t"}"
 
 #tweet_urls[0] = 'https://twitter.com/SUICAIVRC/status/1272845751769391105'
 
-tweets = tweet_urls.map{tw = twitter_client.status _1, tweet_mode: 'extended'; sleep 10; tw}
+tweets = tweet_urls.map{tw = twitter_client.status _1, tweet_mode: 'extended' rescue nil; sleep 10; tw}
 
 image_uris = tweets.map{"#{_1.media.first.media_uri_https}?name=orig" if _1 && _1.media?}
 puts "image_uris:\n\t#{image_uris.join "\n\t"}"
@@ -139,6 +139,24 @@ tweets.length.times{|p|
 		_1.gravity 'SouthEast'
 		_1.pointsize 20
 		_1.draw "text #{pos} '#{text}'"
+	}
+	.combine_options{
+		pos = '600, 117'
+		text = "「VRChat 今日のことば」\nBOOTHにて配布中\n更新管理者Discord: すいかい#9599"
+		_1.font FONT_SANS
+		_1.fill '#fcfcfc'
+		_1.gravity 'SouthWest'
+		_1.pointsize 20
+		_1.draw "text #{pos} '#{text}'"
+	}
+	.composite(
+		MiniMagick::Image
+		.open('qr.png')
+		.resize("100x100")
+	){
+		_1.compose 'Over'
+		_1.gravity 'SouthEast'
+		_1.geometry "+3+120"
 	}
 	.composite(
 		MiniMagick::Image
