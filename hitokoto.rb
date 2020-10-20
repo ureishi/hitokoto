@@ -45,9 +45,8 @@ puts 'created: public'
 
 ### create image
 puts 'create hitokoto.jpg (for forward compatibility)'
-SIZE_LEGACY = '1920x1080'
 MiniMagick::Tool::Convert.new{
-	_1.size SIZE_LEGACY
+	_1.size '1920x1080'
 	_1 << 'canvas:#2f2725'
 	_1 << 'base_legacy.jpg'
 }
