@@ -55,7 +55,7 @@ MiniMagick::Image
 .open('base_legacy.jpg')
 .composite(
 	MiniMagick::Image
-	.open(image_uris.first || 'default.png')
+	.open(image_uris.first || 'not_found.png')
 	.resize(SIZE_LEGACY)
 ){
 	_1.compose 'Over'
@@ -96,6 +96,33 @@ image = MiniMagick::Image
 	_1.fill '#0d3e59'
 	_1.draw "rectangle #{pos_nw} #{pos_se}"
 }
+.combine_options{
+	pos = '5, 117'
+	text = "※写真の権利は撮影者に帰属します。\n※宗派を問わず気まぐれに更新されます。\n※営利・勧誘目的ではありません。"
+	_1.font FONT_SERIF
+	_1.fill '#fcfcfc'
+	_1.gravity 'SouthWest'
+	_1.pointsize 20
+	_1.draw "text #{pos} '#{text}'"
+}
+.combine_options{
+	pos = '600, 117'
+	text = "「VRChat 今日のことば」\nBOOTHにて配布中\n更新管理者Discord: すいかい#9599"
+	_1.font FONT_SANS
+	_1.fill '#fcfcfc'
+	_1.gravity 'SouthWest'
+	_1.pointsize 20
+	_1.draw "text #{pos} '#{text}'"
+}
+.composite(
+	MiniMagick::Image
+	.open('qr.png')
+	.resize("100x100")
+){
+	_1.compose 'Over'
+	_1.gravity 'SouthEast'
+	_1.geometry "+3+120"
+}
 
 image.write 'base.png'
 puts 'created: base.png'
@@ -121,36 +148,9 @@ tweets.length.times{|p|
 		_1.pointsize 25
 		_1.draw "text #{pos} '#{text}'"
 	}
-	.combine_options{
-		pos = '5, 117'
-		text = "※写真の権利は撮影者に帰属します。\n※宗派を問わず気まぐれに更新されます。\n※営利・勧誘目的ではありません。"
-		_1.font FONT_SERIF
-		_1.fill '#fcfcfc'
-		_1.gravity 'SouthWest'
-		_1.pointsize 20
-		_1.draw "text #{pos} '#{text}'"
-	}
-	.combine_options{
-		pos = '600, 117'
-		text = "「VRChat 今日のことば」\nBOOTHにて配布中\n更新管理者Discord: すいかい#9599"
-		_1.font FONT_SANS
-		_1.fill '#fcfcfc'
-		_1.gravity 'SouthWest'
-		_1.pointsize 20
-		_1.draw "text #{pos} '#{text}'"
-	}
 	.composite(
 		MiniMagick::Image
-		.open('qr.png')
-		.resize("100x100")
-	){
-		_1.compose 'Over'
-		_1.gravity 'SouthEast'
-		_1.geometry "+3+120"
-	}
-	.composite(
-		MiniMagick::Image
-		.open(image_uris[p] || 'default.png')
+		.open(image_uris[p] || 'not_found.png')
 		.resize("#{SIZE}x#{SIZE}")
 	){
 		_1.compose 'Over'
