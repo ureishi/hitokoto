@@ -142,7 +142,7 @@ tweets.length.times{|p|
 	}
 	.combine_options{
 		pos = '0, 186'
-		text = tweets[p] && image_uris[p] ? "@#{tweets[p].user.screen_name}" : tweet_urls[p]
+		text = tweets[p] && image_uris[p] ? "@#{tweets[p].user.screen_name}\t(#{tweets[p].created_at})" : tweet_urls[p]
 		_1.font FONT_SANS
 		_1.fill '#fcfcfc'
 		_1.gravity 'North'
