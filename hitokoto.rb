@@ -79,7 +79,7 @@ MiniMagick::Image
 }
 .combine_options{
 	pos = '0, 45'
-	text = tweets.first && image_uris.first ? "@#{tweets.first.user.screen_name}\t(#{tweets.first.created_at.strftime("%Y年%m月%d日 %H時%M分%S秒 JST")})" : tweet_urls.first
+	text = tweets.first && image_uris.first ? "@#{tweets.first.user.screen_name}\t(#{tweets.first.created_at.getlocal('+09:00').strftime("%Y年%m月%d日 %H時%M分%S秒 JST")})" : tweet_urls.first
 	_1.font FONT_SANS
 	_1.fill '#fcfcfc'
 	_1.gravity 'North'
@@ -163,7 +163,7 @@ tweets.length.times{|p|
 	}
 	.combine_options{
 		pos = '0, 186'
-		text = tweets[p] && image_uris[p] ? "@#{tweets[p].user.screen_name}\t(#{tweets[p].created_at.strftime("%Y年%m月%d日 %H時%M分%S秒 JST")})" : tweet_urls[p]
+		text = tweets[p] && image_uris[p] ? "@#{tweets[p].user.screen_name}\t(#{tweets[p].created_at.getlocal('+09:00').strftime("%Y年%m月%d日 %H時%M分%S秒 JST")})" : tweet_urls[p]
 		_1.font FONT_SANS
 		_1.fill '#fcfcfc'
 		_1.gravity 'North'
