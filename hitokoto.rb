@@ -44,8 +44,13 @@ Dir.mkdir 'public' unless Dir.exists? 'public'
 puts 'created: public'
 
 ### create image
+FONT_SERIF = '.font/Noto_Serif_JP/NotoSerifJP-Regular.otf'
+FONT_SANS = '.font/Noto_Sans_JP/NotoSansJP-Regular.otf'
+
 puts 'create hitokoto.jpg (for forward compatibility)'
-SIZE_LEGACY = '1920x1080'
+SIZE_LEGACY = "1920x1080"
+r = 20
+SIZE_LEGACY_IMAGE = "#{1920-16*r}x#{1080-9*r}"
 MiniMagick::Tool::Convert.new{
 	_1.size SIZE_LEGACY
 	_1 << 'canvas:#2f2725'
@@ -57,11 +62,29 @@ MiniMagick::Image
 .composite(
 	MiniMagick::Image
 	.open(image_uris.first || 'not_found.png')
-	.resize(SIZE_LEGACY)
+	.resize(SIZE_LEGACY_IMAGE)
 ){
 	_1.compose 'Over'
 	_1.gravity 'Center'
 	_1.geometry "+0+0"
+}
+.combine_options{
+	pos = '0, 10'
+	text = tweets.first ? "#{tweets.first.user.name}"[..30] : "ERROR: TWEET NOT FOUND"
+	_1.font FONT_SERIF
+	_1.fill '#fcfcfc'
+	_1.gravity 'North'
+	_1.pointsize 30
+	_1.draw "text #{pos} '#{text}'"
+}
+.combine_options{
+	pos = '0, 45'
+	text = tweets.first && image_uris.first ? "@#{tweets.first.user.screen_name}\t(#{tweets.first.created_at.strftime("%Y年%m月%d日 %H時%M分%S秒 JST")})" : tweet_urls.first
+	_1.font FONT_SANS
+	_1.fill '#fcfcfc'
+	_1.gravity 'North'
+	_1.pointsize 25
+	_1.draw "text #{pos} '#{text}'"
 }
 .write('public/hitokoto.jpg')
 puts 'created: hitokoto.jpg'
@@ -70,8 +93,6 @@ puts 'create images...'
 BASE_W = 1024
 BASE_H = 1448
 SIZE = 1000
-FONT_SERIF = '.font/Noto_Serif_JP/NotoSerifJP-Regular.otf'
-FONT_SANS = '.font/Noto_Sans_JP/NotoSansJP-Regular.otf'
 
 MiniMagick::Tool::Convert.new{
 	_1.size "#{BASE_W}x#{BASE_H}"
@@ -142,7 +163,7 @@ tweets.length.times{|p|
 	}
 	.combine_options{
 		pos = '0, 186'
-		text = tweets[p] && image_uris[p] ? "@#{tweets[p].user.screen_name}\t(#{tweets[p].created_at})" : tweet_urls[p]
+		text = tweets[p] && image_uris[p] ? "@#{tweets[p].user.screen_name}\t(#{tweets[p].created_at.strftime("%Y年%m月%d日 %H時%M分%S秒 JST")})" : tweet_urls[p]
 		_1.font FONT_SANS
 		_1.fill '#fcfcfc'
 		_1.gravity 'North'
